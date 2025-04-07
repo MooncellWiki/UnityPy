@@ -546,7 +546,7 @@ class BundleFile(File.File):
                     literal_length += l
                 op += literal_length
                 ip += literal_length
-                if uncompressed_size - op < 12:  # MFLIMIT end of block
+                if uncompressed_size == op:  # MFLIMIT end of block
                     break
                 offset = fixed_compressed_data[ip + 1] | fixed_compressed_data[ip] << 8
                 fixed_compressed_data[ip] = offset & 0xFF
